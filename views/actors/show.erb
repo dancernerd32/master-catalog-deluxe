@@ -1,0 +1,12 @@
+<h1><%=@actor_info[0]["name"]%></h1>
+<h2>Starring in:</h2>
+
+<ul>
+  <%@actor_info.each do |character|%>
+    <li><a href="/movies/<%=character["movie_id"]%>"><%=character["title"]%></a>
+      <%if character["character"]%>
+        as <%=character["character"]%>
+      <%end%>
+    </li>
+  <%end%>
+</ul>

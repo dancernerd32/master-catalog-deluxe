@@ -1,0 +1,20 @@
+<h1>Actors</h1>
+<ul>
+  <% @actors.each_with_index do |actor_hash, index| %>
+    <%if index <= @end_page && index >= @start_page%>
+      <li><a href="/actors/<%= actor_hash['id'] %>"><%= actor_hash['name'] %></a></li>
+    <%end%>
+  <%end%>
+</ul>
+
+<p>
+
+  <%unless @page == 1%>
+  <a href='/actors'>First</a>
+  <a href='/actors?page=<%=@page - 1%>'>Previous</a>
+  <%end%>
+  <%unless @page > @last_page%>
+  <a href='/actors?page=<%=@page + 1%>'>Next</a>
+  <%end%>
+
+</p>

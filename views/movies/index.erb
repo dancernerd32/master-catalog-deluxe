@@ -1,0 +1,41 @@
+<h1>Movies</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Rating</th>
+      <th>Genre</th>
+      <th>Studio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each_with_index do |movie_hash, index| %>
+      <%if index <= @end_page && index >= @start_page%>
+        <tr>
+          <td>
+            <a href="/movies/<%= movie_hash['movie_id'] %>">
+              <%= movie_hash['title'] %>
+            </a>
+          </td>
+          <td><%=movie_hash['year']%></td>
+          <td><%=movie_hash['rating']%></td>
+          <td><%=movie_hash['genre']%></td>
+          <td><%=movie_hash['studio']%></td>
+        </tr>
+      <%end%>
+    <%end%>
+  </tbody>
+</table>
+
+<p>
+
+  <%unless @page == 1%>
+  <a href='/movies'>First</a>
+  <a href='/movies?page=<%=@page - 1%>'>Previous</a>
+  <%end%>
+  <%unless @page > @last_page%>
+  <a href='/movies?page=<%=@page + 1%>'>Next</a>
+  <%end%>
+
+</p>
